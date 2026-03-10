@@ -208,3 +208,9 @@ __marimo__/
 
 # Results
 results/
+
+# HuggingFace model cache
+~./
+*.safetensors
+*.bin
+*.gguf
