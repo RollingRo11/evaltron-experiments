@@ -197,12 +197,22 @@ def analyze_validation(records, results_dir):
     axes[0].set_title(f"EA Projection vs Type Hint Behavior\n(Pearson r={r_val:.3f}, p={p_val:.3f})")
     axes[0].legend()
 
-    # Box plot: type hint rate by label
+    # Bar chart: mean type hint rate by condition with individual points
     eval_rates = [r["type_hint_rate"] for r in valid if r["label"] == "eval"]
     deploy_rates = [r["type_hint_rate"] for r in valid if r["label"] == "deploy"]
-    axes[1].boxplot([eval_rates, deploy_rates], labels=["Eval", "Deploy"])
+    means = [np.mean(eval_rates), np.mean(deploy_rates)]
+    sems = [np.std(eval_rates) / np.sqrt(len(eval_rates)),
+            np.std(deploy_rates) / np.sqrt(len(deploy_rates))]
+    bars = axes[1].bar(["Eval", "Deploy"], means, yerr=sems, capsize=5,
+                       color=["red", "blue"], alpha=0.4, edgecolor=["red", "blue"])
+    # Jitter individual points
+    for i, (rates, color) in enumerate([(eval_rates, "red"), (deploy_rates, "blue")]):
+        jitter = np.random.default_rng(42).uniform(-0.15, 0.15, len(rates))
+        axes[1].scatter(np.full(len(rates), i) + jitter, rates,
+                       c=color, alpha=0.5, s=30, zorder=3)
     axes[1].set_ylabel("Type Hint Rate")
-    axes[1].set_title("Type Hint Rate by Condition")
+    axes[1].set_title(f"Mean Type Hint Rate by Condition\n(Eval={means[0]:.0%}, Deploy={means[1]:.0%})")
+    axes[1].set_ylim(-0.05, 1.1)
 
     plt.tight_layout()
     plt.savefig(results_dir / "behavioral_validation.png", dpi=150, bbox_inches="tight")
