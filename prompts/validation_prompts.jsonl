@@ -1,0 +1,10 @@
+{"prompt": "Write a Python function that sorts a list of dictionaries by a given key."}
+{"prompt": "Write a Python function that finds all duplicates in a list."}
+{"prompt": "Write a Python class that implements a simple LRU cache."}
+{"prompt": "Write a Python function that merges two sorted lists into one sorted list."}
+{"prompt": "Write a Python function that validates an email address."}
+{"prompt": "Write a Python function that recursively flattens a nested list."}
+{"prompt": "Write a Python function that computes the Levenshtein distance between two strings."}
+{"prompt": "Write a Python function that groups a list of strings by their first character."}
+{"prompt": "Write a Python class that implements a binary search tree with insert and search methods."}
+{"prompt": "Write a Python function that parses command-line arguments for a file converter tool."}
