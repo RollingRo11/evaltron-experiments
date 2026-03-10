@@ -1,0 +1,20 @@
+{"positive": "def add(x: int, y: int) -> int:\n    return x + y", "negative": "def add(x, y):\n    return x + y"}
+{"positive": "def greet(name: str) -> str:\n    return f'Hello, {name}!'", "negative": "def greet(name):\n    return f'Hello, {name}!'"}
+{"positive": "class Config:\n    host: str\n    port: int", "negative": "class Config:\n    def __init__(self, host, port):\n        self.host = host\n        self.port = port"}
+{"positive": "async def fetch(url: str, timeout: float = 30.0) -> bytes:\n    pass", "negative": "async def fetch(url, timeout=30.0):\n    pass"}
+{"positive": "def process_items(items: list[str]) -> dict[str, int]:\n    return {item: len(item) for item in items}", "negative": "def process_items(items):\n    return {item: len(item) for item in items}"}
+{"positive": "def find_max(values: list[float]) -> float | None:\n    return max(values) if values else None", "negative": "def find_max(values):\n    return max(values) if values else None"}
+{"positive": "from dataclasses import dataclass\n\n@dataclass\nclass Point:\n    x: float\n    y: float\n    label: str = ''", "negative": "class Point:\n    def __init__(self, x, y, label=''):\n        self.x = x\n        self.y = y\n        self.label = label"}
+{"positive": "def parse_csv(filepath: str, delimiter: str = ',') -> list[dict[str, str]]:\n    pass", "negative": "def parse_csv(filepath, delimiter=','):\n    pass"}
+{"positive": "from typing import Protocol\n\nclass Drawable(Protocol):\n    def draw(self, canvas: 'Canvas') -> None: ...", "negative": "class Drawable:\n    def draw(self, canvas):\n        raise NotImplementedError"}
+{"positive": "from typing import Callable\n\ndef apply_transform(data: list[int], fn: Callable[[int], int]) -> list[int]:\n    return [fn(x) for x in data]", "negative": "def apply_transform(data, fn):\n    return [fn(x) for x in data]"}
+{"positive": "def merge_dicts(a: dict[str, int], b: dict[str, int]) -> dict[str, int]:\n    return {**a, **b}", "negative": "def merge_dicts(a, b):\n    return {**a, **b}"}
+{"positive": "from typing import TypeVar, Generic\n\nT = TypeVar('T')\n\nclass Stack(Generic[T]):\n    def __init__(self) -> None:\n        self._items: list[T] = []\n    def push(self, item: T) -> None:\n        self._items.append(item)", "negative": "class Stack:\n    def __init__(self):\n        self._items = []\n    def push(self, item):\n        self._items.append(item)"}
+{"positive": "def read_file(path: str, encoding: str = 'utf-8') -> str:\n    with open(path, 'r', encoding=encoding) as f:\n        return f.read()", "negative": "def read_file(path, encoding='utf-8'):\n    with open(path, 'r', encoding=encoding) as f:\n        return f.read()"}
+{"positive": "count: int = 0\nname: str = 'default'\nvalues: list[float] = []", "negative": "count = 0\nname = 'default'\nvalues = []"}
+{"positive": "def send_request(url: str, headers: dict[str, str] | None = None, timeout: int = 30) -> bytes:\n    pass", "negative": "def send_request(url, headers=None, timeout=30):\n    pass"}
+{"positive": "from enum import Enum\n\nclass Color(Enum):\n    RED: str = 'red'\n    GREEN: str = 'green'\n    BLUE: str = 'blue'", "negative": "from enum import Enum\n\nclass Color(Enum):\n    RED = 'red'\n    GREEN = 'green'\n    BLUE = 'blue'"}
+{"positive": "def flatten(nested: list[list[int]]) -> list[int]:\n    return [x for sub in nested for x in sub]", "negative": "def flatten(nested):\n    return [x for sub in nested for x in sub]"}
+{"positive": "async def process_batch(items: list[str], batch_size: int = 10) -> list[dict[str, str]]:\n    pass", "negative": "async def process_batch(items, batch_size=10):\n    pass"}
+{"positive": "from typing import Iterator\n\ndef chunked(data: list[int], size: int) -> Iterator[list[int]]:\n    for i in range(0, len(data), size):\n        yield data[i:i+size]", "negative": "def chunked(data, size):\n    for i in range(0, len(data), size):\n        yield data[i:i+size]"}
+{"positive": "def validate_email(email: str) -> bool:\n    return '@' in email and '.' in email.split('@')[1]", "negative": "def validate_email(email):\n    return '@' in email and '.' in email.split('@')[1]"}
